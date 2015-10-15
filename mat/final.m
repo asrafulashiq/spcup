@@ -2,7 +2,12 @@ close all;
 
 fs=1000;
 %Y=wavread('I:\SP Cup Data\Training Data\Training_GridsDtoF\Grid_F\Power_recordings\Train_Grid_F_P1');
-Y=wavread('../data/Grid_A/Power_recordings/Train_Grid_A_P4.wav');
+
+gridName = 'A_P1';
+
+filename = sprintf('../data/Grid_A/Power_recordings/Train_Grid_%s.wav',gridName); 
+
+Y=wavread(filename);
 % Y1=decimate(Y',2);
 
 Y_f=filter(Bandpass_n,Y');
@@ -111,7 +116,8 @@ for i = 1:32:(length(F)-32)
 end
 
 %% save data to a mat file
-save('../feature_data/A_P4.mat','F','var_x','mean_x','skew_x','kurt_x','diff_x','global_mean','global_var','wavcoef_n');
+%file_to_save = sprintf('../feature_data/%s.mat',gridName);
+save(file_to_save,'F','var_x','mean_x','skew_x','kurt_x','diff_x','global_mean','global_var','wavcoef_n');
 
 
 
