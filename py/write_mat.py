@@ -13,6 +13,10 @@ import re
 inputs = []
 targets = []
 
+def init():
+    inputs = []
+    targets = []
+
 def loadMat(file):
     '''
      load matfile named 'file' ..
@@ -30,7 +34,7 @@ def load_local_features(data,target_value):
                 feature_name.append(i)
     input  = zip( *[ data[i][0] for i in feature_name ])
 
-    target =  [target_value for i in xrange(len(input))] 
+    target =  [[target_value] for i in xrange(len(input))] 
 
     inputs.extend(input)
     targets.extend(target)
@@ -46,6 +50,7 @@ def write_to_file(filename):
 
 def main():
     grids = ['A','B','C','D','E','F','G','H'];
+    init()
 
     for grid in grids:
         for i in xrange(1,12):
