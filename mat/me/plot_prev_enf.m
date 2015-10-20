@@ -1,32 +1,23 @@
 
-%filename = sprintf('../../data/Grid_B/Power_recordings/Train_Grid_B_P9.wav') ;
-
-%Grid = 'D';
+%% plot enf signal specified by grids name
 
 grids = ['A','B','C','D','E','F','G','H'];
-%grids = ['B','D','E','F','G','H'];
-count  = 3; 
-All_F = [[]];
 
-k = 1;
+grids  = ['H'];
+
+k = 1; % simple counter
 
 for Grid = grids
     
 Fx = [];
-%for i = 1:count
-       filename = sprintf('Grid%s_enf.mat',Grid); 
-       %enf_extract_me;
+       filename = sprintf('grid/Grid%s_enf.mat',Grid); % filename of the enf signal
+       
        if exist(filename,'file')==2
            load(filename,'F');
            Fx = [Fx F];
            length(F)
        end
-       %   file_to_save = sprintf('../feature_data/%s_P%d.mat',Grid,i);
-       %   final;
-       %end
-%end
-
-
+      
 figure(k);
 plot(Fx);
 title(Grid);
