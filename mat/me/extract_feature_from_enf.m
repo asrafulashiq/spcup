@@ -1,7 +1,7 @@
 %% extract statistical features from 
 %  enf signal in filename
 
-function r = extract_feature_from_enf(file,window_sample)
+function  extract_feature_from_enf(file,window_sample)
     
     load(file,'F'); % load enf signal from matfile
     
