@@ -60,7 +60,7 @@ def load_data(filename):
 
  
 #filename = sys.argv[1]
-filename = '../feature_data/pyfile/features.mat'
+filename = 'feature_data/features.mat'
 load_data(filename)
 
 ##### 

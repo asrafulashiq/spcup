@@ -31,9 +31,12 @@ def load_local_features(data,target_value):
     for i in data:
         if not re.match(r'__*',i) and i!='F' :
             if not re.match(r'global*',i): # skipping global feature
-                if 1:#not re.match(r'var_wav',i) : 
+                if not re.match(r'(qqq)',i) : 
                 #if re.match(r'mean',i) or re.match(r'diff',i) or re.match(r'range',i):
                     feature_name.append(i)
+    # normalize 
+    
+    
     input  = zip( *[ data[i][0] for i in feature_name ])
 
     target =  [[target_value] for i in xrange(len(input))] 

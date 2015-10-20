@@ -27,12 +27,25 @@ function  extract_feature_from_enf(file,window_sample)
     range_x = zeros(1,len); % difference between max and min value
     diff_x = zeros(1,len); % mean of maximum 3 differences
     wav_coef = [];
-    
-    var_wav = zeros(1,len); % variance of wavlet coefficient
+    wav_mean = zeros(1,len);
+    wav_var = zeros(1,len);
+    d1 = zeros(1,len);
+    d2 = zeros(1,len);
+    d3 = zeros(1,len);
+    d4 = zeros(1,len);
+    d5 = zeros(1,len);
+
+    d1_m = zeros(1,len);
+    d2_m = zeros(1,len);
+    d3_m = zeros(1,len);
+    d4_m = zeros(1,len);
+    d5_m = zeros(1,len);
+    %var_wav = zeros(1,len); % variance of wavlet coefficient
     
     % AR2 model parameters
     ar1_x = zeros(1,len);
     ar2_x = zeros(1,len);
+    D = [];
     
     counter = 1; % simple counter for the loop 
     
@@ -58,14 +71,44 @@ function  extract_feature_from_enf(file,window_sample)
        temp1= x(i:(i+window_sample-1));
        temp2=F1(i:(i+window_sample-1));                  % for normalized ENF
 
-       [C ,L]=wavedec(temp1,9,'haar');
+       [C ,L]=wavedec(temp1,5,'haar');
 
-       [C1 , L1]=wavedec(temp2,9,'haar');      % for normalized ENF
+       [C1 , L1]=wavedec(temp2,5,'haar');      % for normalized ENF
 
         wav_coef(:,counter)=C;
-        wavcoef_n(:,counter)=C1;
+        %wavcoef_n(:,counter)=C1;
         
-        var_wav(counter) = log(var(C));
+        A5= wrcoef('a',C,L,'haar',5);  
+        
+        
+        D(:,1)=wrcoef('d',C,L,'haar',1);          % detail_signal_1
+        D(:,2)=wrcoef('d',C,L,'haar',2);          % detail_signal_2
+        D(:,3)=wrcoef('d',C,L,'haar',3);          %detail_signal_3
+        D(:,4)=wrcoef('d',C,L,'haar',4);          % detail_signal_4
+        D(:,5)=wrcoef('d',C,L,'haar',5);          % detail_signal_5
+        wav_mean(counter) = mean(A5);                        % mean of approximation
+        wav_var(counter) = (var(A5));%variance of approximation
+        
+        d1(counter) = var(D(:,1));
+        d2(counter) = var(D(:,2));
+        d3(counter) = var(D(:,3));
+        d4(counter) = var(D(:,4));
+        d5(counter) = var(D(:,5));
+        
+        d1_m(counter) = mean(D(:,1));
+        d2_m(counter) = mean(D(:,2));
+        d3_m(counter) = mean(D(:,3));
+        d4_m(counter) = mean(D(:,4));
+        d5_m(counter) = mean(D(:,5));
+        
+        %for i=1:5
+        %    wav_mean=[wav_mean mean(D(:,i))];     % mean of detail
+        %    wav_var=[wav_var var(D(:,i))];        % variance of detail
+        %end
+        %wavcoef_n(:,counter)=C1;
+        
+        
+        %var_wav(counter) = log(var(C));
         
         %feature_per_rcrd = feature_per_rcrd + 1;
         
@@ -89,6 +132,7 @@ function  extract_feature_from_enf(file,window_sample)
     g = strsplit(char(grid_name(2)),'_')
     
     file_to_save = sprintf('features/%s',char(g(1)));
-    save(file_to_save,'mean_x','var_x','range_x','diff_x','var_wav','ar2_x');
+    save(file_to_save,'mean_x','var_x','range_x','diff_x','wav_mean','wav_var','ar2_x'...
+        ,'d1','d2','d3','d4','d5');
         
 end
