@@ -1,7 +1,7 @@
 %% extract statistical features from 
 %  enf signal in filename
 
-function  extract_feature_from_enf(file,window_sample)
+function r = extract_feature_from_enf(file,window_sample)
     
     load(file,'F'); % load enf signal from matfile
     
@@ -9,10 +9,10 @@ function  extract_feature_from_enf(file,window_sample)
     F1=F/max(F); % normalized enf
     
     %% global mean
-    global_mean = mean(F)
+    global_mean = mean(F);
     
     %% global variance
-    global_var = log(var(F))
+    global_var = log(var(F));
     
     
     %% statistical features
@@ -26,7 +26,9 @@ function  extract_feature_from_enf(file,window_sample)
     var_x = zeros(1,len);
     range_x = zeros(1,len); % difference between max and min value
     diff_x = zeros(1,len); % mean of maximum 3 differences
-    wavelet = [];
+    wav_coef = [];
+    
+    var_wav = zeros(1,len); % variance of wavlet coefficient
     
     % AR2 model parameters
     ar1_x = zeros(1,len);
@@ -62,12 +64,13 @@ function  extract_feature_from_enf(file,window_sample)
 
         wav_coef(:,counter)=C;
         wavcoef_n(:,counter)=C1;
-       
+        
+        var_wav(counter) = log(var(C));
         
         %feature_per_rcrd = feature_per_rcrd + 1;
         
         %% estimating AR2 model parameters
-        arr = arburg( x(i:(i+window_sample-1)),2 )
+        arr = arburg( x(i:(i+window_sample-1)),2 );
         ar1_x(counter) = arr(1);
         ar2_x(counter) = arr(2);
         
@@ -77,6 +80,8 @@ function  extract_feature_from_enf(file,window_sample)
         counter = counter + 1;
         
     end
+    
+  
 
     %% save features
     grid_name = strsplit(file,'/')
@@ -84,6 +89,6 @@ function  extract_feature_from_enf(file,window_sample)
     g = strsplit(char(grid_name(2)),'_')
     
     file_to_save = sprintf('features/%s',char(g(1)));
-    save(file_to_save,'mean_x','var_x','range_x','diff_x','wavelet','ar1_x','ar2_x','global_mean','global_var');
+    save(file_to_save,'mean_x','var_x','range_x','diff_x','var_wav','ar2_x');
         
 end
