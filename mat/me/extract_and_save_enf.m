@@ -1,7 +1,7 @@
 %% extract and save all the enf from grid data
 %
 
-grids = ['A' ,'B','C','D','E','F','G','H'];
+grids = ['A'] %,'B','C','D','E','F','G','H'];
 
 count  = 11;  % number of hour data, upto 11 hours is available
 
