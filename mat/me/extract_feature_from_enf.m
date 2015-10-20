@@ -83,7 +83,6 @@ function  extract_feature_from_enf(file,window_sample)
     grid_name(2)
     g = strsplit(char(grid_name(2)),'_')
     
-    
     file_to_save = sprintf('features/%s',char(g(1)));
     save(file_to_save,'mean_x','var_x','range_x','diff_x','wavelet','ar1_x','ar2_x','global_mean','global_var');
         

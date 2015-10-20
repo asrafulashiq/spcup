@@ -11,7 +11,7 @@ function F = enf_extract(filename,window_time)
     
     window_len = window_time * Fs; % number of samples per window
     
-    len = ((length(Y)/window_len))
+    len = ((length(Y)/window_len));
     
     %%
     F=zeros(1,len);
