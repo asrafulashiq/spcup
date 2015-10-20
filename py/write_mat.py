@@ -30,8 +30,9 @@ def load_local_features(data,target_value):
     # extract the local feature name
     for i in data:
         if not re.match(r'__*',i) and i!='F' :
-            if not re.match(r'global*',i):
-                if not re.match(r'wavelet',i): 
+            if not re.match(r'global*',i): # skipping global feature
+                if 1:#not re.match(r'var_wav',i) : 
+                #if re.match(r'mean',i) or re.match(r'diff',i) or re.match(r'range',i):
                     feature_name.append(i)
     input  = zip( *[ data[i][0] for i in feature_name ])
 
@@ -54,15 +55,14 @@ def main():
     init()
 
     for grid in grids:
-        for i in xrange(1,12):
-            #filename = '../feature_data/matfile/{0}/{0}_P{1}.mat'\
-            #.format(grid,i)
-            filename = '../mat/me/features/Grid{0}.mat'\
+        #filename = '../feature_data/matfile/{0}/{0}_P{1}.mat'\
+        #.format(grid,i)
+        filename = '../mat/me/features/Grid{0}.mat'\
             .format(grid)
-            if os.path.exists(filename):
-                load_local_features(
-                    loadMat(filename), ord(grid)-ord('A')
-                )
+        if os.path.exists(filename):
+            load_local_features(
+                loadMat(filename), ord(grid)-ord('A')
+            )
     file_to_save = 'feature_data/features.mat'
     write_to_file(file_to_save)
 
