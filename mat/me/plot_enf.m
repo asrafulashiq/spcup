@@ -1,11 +1,17 @@
 
 %filename = sprintf('../../data/Grid_B/Power_recordings/Train_Grid_B_P9.wav') ;
 
-Grid = 'D';
+%Grid = 'D';
 
+grids = ['A' ,'B','C','D','E','F','G','H'];
 count  = 4; 
-F = [];
+All_F = [[]];
 
+k = 1;
+
+for Grid = grids
+    
+F = [];
 for i = 1:count
        filename = sprintf('../../data/Grid_%s/Power_recordings/Train_Grid_%s_P%d.wav',Grid,Grid,i); 
        %enf_extract_me;
@@ -17,6 +23,12 @@ for i = 1:count
        %end
 end
 
-figure();
-plot(F);
-title(Grid);
+file_to_save = sprintf('Grid%s_enf.mat',Grid);
+
+save(file_to_save,'F');
+
+end
+
+%figure();
+%plot(F);
+%title(Grid);

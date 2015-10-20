@@ -8,7 +8,7 @@ function F = enf_extract(filename)
     
     Y_f=filter(bandpass,Y'); 
     
-    window_time = 10 % window time in second
+    window_time = 2 % window time in second
     
     window_len = window_time * Fs % number of samples per window
     
