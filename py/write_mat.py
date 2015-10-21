@@ -31,7 +31,7 @@ def load_local_features(data,target_value):
     for i in data:
         if not re.match(r'__*',i) and i!='F' :
             if not re.match(r'global*',i): # skipping global feature
-                if not re.match(r'(qqq)',i) : 
+                if not re.match(r'(d\d)',i) : 
                 #if re.match(r'mean',i) or re.match(r'diff',i) or re.match(r'range',i):
                     feature_name.append(i)
     # normalize 
