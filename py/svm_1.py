@@ -41,3 +41,11 @@ s = sum([1  for i in d if i!=0])
 
 print 'Error percent :',s/len(d)*100
 
+###
+
+
+
+
+
+
+
