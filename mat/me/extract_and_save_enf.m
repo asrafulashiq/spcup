@@ -3,7 +3,7 @@
 
 grids = ['A','B','C','D','E','F','G','H'];
 
-count  = 11;  % number of hour data, upto 11 hours is available
+count  = 12;  % number of hour data, upto 11 hours is available
 
 window_time = 2; % window time in second
 
@@ -21,7 +21,7 @@ for i = 1:count
        
 end
 
-file_to_save = sprintf('Grid%s_enf.mat',Grid);
+file_to_save = sprintf('not_all_grid/Grid%s_enf.mat',Grid);
 
 save(file_to_save,'F');
 
