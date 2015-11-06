@@ -54,7 +54,7 @@ def write_to_file(filename):
 
 
 def main():
-    grids = ['A','B','C','D','E','F','G','H'];
+    grids = ['A','B','C','D','E','F','G','H','I'];
     init()
 
     for grid in grids:

@@ -131,7 +131,7 @@ function  extract_feature_from_enf(file,window_sample)
     grid_name(2)
     g = strsplit(char(grid_name(2)),'_')
     
-    file_to_save = sprintf('features/%s',char(g(1)));
+    file_to_save = sprintf('features2/%s',char(g(1)));
     save(file_to_save,'mean_x','var_x','range_x','diff_x','wav_mean','wav_var','ar2_x'...
         ,'d1','d2','d3','d4','d5');
         

@@ -74,12 +74,10 @@ def write_to_file(filename):
 #    main()
 
 
-grids = ['A','B','C','D','E','F','G','H'];
+grids = ['A','B','C','D','E','F','G','H','I'];
 init()
 
-
 ## test and train files
-
 
 count = 12
 

@@ -33,7 +33,7 @@ match_test = {}
 error = {}
 other_match = {}
 
-for i in xrange(8):
+for i in xrange(9):
     total_test[i]=0
     error[i]=0
     match_test[i]=0
@@ -44,7 +44,7 @@ for i in xrange(8):
 
 pr = clf.predict(inp)            
             
-for i in xrange(8):
+for i in xrange(9):
     index = tar==i
     m = np.sum(tar==i)
     n = np.sum(pr[index]==i)
