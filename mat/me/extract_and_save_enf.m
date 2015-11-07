@@ -5,7 +5,7 @@ grids = ['A','B','C','D','E','F','G','H','I'];
 
 count  = 11;  % number of hour data, upto 11 hours is available
 
-window_time = 2; % window time in second
+window_time = .2; % window time in second
 
 k = 1; % just  a counter
 

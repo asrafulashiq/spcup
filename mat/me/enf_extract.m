@@ -5,7 +5,7 @@ function F = enf_extract(filename,window_time)
     [Y,Fs] = audioread(filename);
     % Fs is the sampling frequency of the wav file
     
-    Y_f= Y; %filter(bandpass,Y'); 
+    Y_f = Y; %filter(bandpass,Y'); 
     
     %window_time = 2 % window time in second
     
