@@ -41,11 +41,28 @@ s = sum([1  for i in d if i!=0])
 
 print 'Error percent :',s/len(d)*100
 
+#<<<<<<< HEAD
 ###
 
 
 
 
+#=======
+for i in xrange(9):
+    index = test_y==i
+    m = np.sum(test_y==i)
+    n = np.sum(pr[index]==i)
+    print
+    print i," : "
+    print "total :",m
+    print "matched :",n
+    print "error :",np.abs(m-n)*1./m*100
+
+    for j in xrange(9):
+        if i!=j:
+            tmp = np.sum(pr[index]==j)
+            print j," - ",tmp
+#>>>>>>> recording_test
 
 
 
