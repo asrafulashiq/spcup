@@ -31,7 +31,7 @@ def load_local_features(data,target_value):
     # extract the local feature name
     for i in data:
         if not re.match(r'__*',i) and i!='F' :
-            if not re.match(r'(global)|(respons)|wav',i): # skipping global feature
+            if not re.match(r'(global)|(respons)|d\d',i): # skipping global feature
                 feature_name.append(i)
     print feature_name
     # normalize 
@@ -64,7 +64,7 @@ feat = dict()
 for grid in grids:
     feat[grid]=[]
     for i in xrange(1,count):
-        filename = '../mat/me/features/{0}{1}.mat'.format(grid,i)
+        filename = '../mat/me/features2000/{0}{1}.mat'.format(grid,i)
         if os.path.exists(filename):
             feat[grid].append(filename)
         else:

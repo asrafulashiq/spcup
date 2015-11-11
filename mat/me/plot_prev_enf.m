@@ -3,22 +3,27 @@
 
 grids = ['A','B','C','D','E','F','G','H','I'];
 
-grids  = ['E','F','G','H'];
+grids  = ['C'];
 
-k = 1; % simple counter
+k = 2; % simple counter
 
 for Grid = grids
     
 Fx = [];
-       filename = sprintf('grid/Grid%s_enf.mat',Grid); % filename of the enf signal
+
+for i=1:k
+    
+       filename = sprintf('grid2000/%s%d.mat',Grid,i); % filename of the enf signal
        
        if exist(filename,'file')==2
            load(filename,'F');
            Fx = [Fx F];
-           length(F)
+           %length(F)
        end
+       
+end
       
-figure(k);
+figure;
 plot(Fx);
 title(Grid);
 
@@ -28,9 +33,9 @@ else
     ylim([59.8 60.2]);
 end
 
-k = k + 1;
+%k = k + 1;
 title(Grid);
-filename = sprintf('figure/%s.fig',Grid);
-savefig(filename);
+%filename = sprintf('figure/%s.fig',Grid);
+%savefig(filename);
 
 end

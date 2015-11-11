@@ -45,7 +45,6 @@ for i in xrange(9):
 pr = clf.predict(inp)            
             
 for i in xrange(9):
-
     index = tar==i
     m = np.sum(tar==i)
     n = np.sum(pr[index]==i)
@@ -65,3 +64,4 @@ print
 d = pr-tar
 s = np.sum(pr!=tar)
 print 'Error percent :',s/len(d)*100
+

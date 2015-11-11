@@ -89,11 +89,11 @@ function  extract_feature_from_enf(file,window_sample)
         wav_mean(counter) = mean(A5);                        % mean of approximation
         wav_var(counter) = (var(A5));%variance of approximation
         
-        d1(counter) = var(D(:,1));
-        d2(counter) = var(D(:,2));
-        d3(counter) = var(D(:,3));
-        d4(counter) = var(D(:,4));
-        d5(counter) = var(D(:,5));
+        d1(counter) = log(var(D(:,1)));
+        d2(counter) = log(var(D(:,2)));
+        d3(counter) = log(var(D(:,3)));
+        d4(counter) = log(var(D(:,4)));
+        d5(counter) = log(var(D(:,5)));
         
         d1_m(counter) = mean(D(:,1));
         d2_m(counter) = mean(D(:,2));
@@ -131,7 +131,7 @@ function  extract_feature_from_enf(file,window_sample)
     grid_name(2)
     g = strsplit(char(grid_name(2)),'_')
     
-    file_to_save = sprintf('features2/%s',char(g(1)));
+    file_to_save = sprintf('features2000/%s',char(g(1)));
     save(file_to_save,'mean_x','var_x','range_x','diff_x','wav_mean','wav_var','ar2_x'...
         ,'d1','d2','d3','d4','d5');
         

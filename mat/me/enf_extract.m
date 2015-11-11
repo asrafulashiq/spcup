@@ -1,11 +1,14 @@
 % extract enf from filename. 
 %% filename must be a wav file
-function F = enf_extract(filename,window_time)
+function F = enf_extract(filename,window_time,is_filter)
 %%
     [Y,Fs] = audioread(filename);
     % Fs is the sampling frequency of the wav file
+    Y_f = Y;
+    if is_filter==true
+        Y_f = filter(bandpass,Y'); 
     
-    Y_f = Y; %filter(bandpass,Y'); 
+    end
     
     %window_time = 2 % window time in second
     
@@ -19,6 +22,9 @@ function F = enf_extract(filename,window_time)
         
         % applying non overlapping window
         p=Y_f( window_len*(i-1)+1 : window_len*(i-1)+window_len ); %Y_f(200*(i-1)+1:200*(i-1)+400);
+        
+        %p = p .* hann(length(p));
+        
         p1=fft(p,2^nextpow2(window_len));
         f = (0:length(p1)-1)*1000/length(p1);
         [~,m]=max(log(abs(p1).^2));
