@@ -21,7 +21,7 @@ Y = np.array([int(i) for i in targets])  #np.array([ int(z[i][1]) for i in xrang
 
 assert len(X)==len(Y)
 
-clf = svm.SVC()
+clf = svm.SVC(kernel='rbf',C=10,gamma=0.1)
 clf.fit(X,Y)
 
 testf = scipy.io.loadmat('feature_n/features_test.mat')
