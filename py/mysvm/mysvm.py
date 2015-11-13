@@ -50,7 +50,7 @@ X_train_transformed = scaler.transform(X_train)
 
 X_test_transformed = scaler.transform(X_test)
 
-clf = svm.SVC(kernel='rbf',C=0.4,gamma=2).fit(X_train,y_train)
+clf = svm.SVC(kernel='rbf',C=10,gamma=2).fit(X_train,y_train)
 
 
 
