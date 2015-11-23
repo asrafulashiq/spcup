@@ -18,19 +18,18 @@ allf = scipy.io.loadmat(filename)
 inputs = allf['inputs']
 targets = allf['targets'][0]
 
-
 ### preprocessing
 
-inputs_scaled = preprocessing.scale(inputs)
+#inputs_scaled = preprocessing.scale(inputs)
 
 ### cross validation
 
-#kftotal = cross_validation.KFold(
-#        len(inputs),n_folds = 10, shuffle=False
-#    )
+kftotal = cross_validation.KFold(
+        len(inputs),n_folds = 10, shuffle=False
+    )
 
-
-#print cross_validation.cross_val_score( clf,inputs_scaled,targets, cv = kftotal, n_jobs = 1 )*100
+#clf =  svm.SVC(kernel='rbf',C=10,gamma=2)
+#print cross_validation.cross_val_score( clf,inputs,targets, cv = kftotal, n_jobs = 1 )*100
 
 
 ### rbf
@@ -51,8 +50,6 @@ X_train_transformed = scaler.transform(X_train)
 X_test_transformed = scaler.transform(X_test)
 
 clf = svm.SVC(kernel='rbf',C=10,gamma=2).fit(X_train,y_train)
-
-
 
 pr = clf.predict(X_test)
 tar = y_test        
